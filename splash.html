@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel = "stylesheet" href = "stylesheets/style.css">
+    <meta charset="UTF-8">
+    <title>Connect Four Homescreen</title>
+    <style>
+    </style>
+</head>
+
+<body>
+<script type="text/javascript" src="splash.js"></script> 
+<script>
+    var socket = new WebSocket("ws://localhost:3000");
+    socket.onmessage = function(event){
+        document.getElementById("hello").innerHTML = event.data;
+    }
+
+    socket.onopen = function(){
+        socket.send("Hello from the client!");
+    };
+</script> 
+<form action="/play" method="get">
+<button type="submit" class="button"> Play! </button>
+</form>
+
+</body>
+
+</html>
